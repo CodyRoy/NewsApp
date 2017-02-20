@@ -10,8 +10,21 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.cr554.newsapp.MainActivity">
 
+    <!--this text view is used as a default if no news is found-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/noNews"
+        android:visibility="gone"
+        android:gravity="center"
+        android:id="@+id/noNewsToShow"/>
+
+
+    <!--recycler view holds all the news-->
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/newsList">
+
+    </android.support.v7.widget.RecyclerView>
 </RelativeLayout>
