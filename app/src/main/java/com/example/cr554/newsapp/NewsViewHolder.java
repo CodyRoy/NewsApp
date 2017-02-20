@@ -6,26 +6,26 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
+
 
 /**
  * Created by cr554 on 2/17/2017.
- * try without buttknife :^)
  */
 
 public class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public @Bind(R.id.newsHeadline) TextView headline;
-    public @Bind(R.id.newsSection) TextView section;
-    public @Bind(R.id.newsImg) ImageView thumbnail;
-    private Context mContext;
+    public TextView headline;
+    public TextView section;
+    public ImageView thumbnail;
+    private Context context;
 
     //constructor
-    public NewsViewHolder(View itemView, Context context){
+    public NewsViewHolder(View itemView, Context ctx){
         super(itemView);
-        ButterKnife.bind(this, itemView);
+        headline = (TextView) itemView.findViewById(R.id.newsHeadline);
+        section = (TextView) itemView.findViewById(R.id.newsSection);
+        thumbnail = (ImageView) itemView.findViewById(R.id.newsImg);
         itemView.setOnClickListener(this);
-        this.mContext = context;
+        this.context = ctx;
     }
 
     public void onClick(View view){

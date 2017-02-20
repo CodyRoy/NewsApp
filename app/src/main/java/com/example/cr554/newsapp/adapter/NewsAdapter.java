@@ -42,8 +42,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder>{
         String articleThumbnail = currentArticle.getThumbnail();
         holder.headline.setText(articleHeadline);
         holder.section.setText(articleSection);
-
-        //populate img
+        if(articleThumbnail.equals("")){
+           holder.thumbnail.setVisibility(View.GONE);
+        } else{
+            //load image
+        }
     }
 
     @Override
