@@ -17,7 +17,6 @@ import java.util.List;
  */
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder>{
-    //
     private List<NewsArticle> mNewsArticles;
     private Context mContext;
 
@@ -37,16 +36,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder>{
     @Override
     public void onBindViewHolder(NewsViewHolder holder, int position){
         NewsArticle currentArticle = mNewsArticles.get(position);
-        String articleHeadline = currentArticle.getHeadline();
-        String articleSection = currentArticle.getSectionName();
-        String articleThumbnail = currentArticle.getThumbnail();
-        holder.headline.setText(articleHeadline);
-        holder.section.setText(articleSection);
-        if(articleThumbnail.equals("")){
-           holder.thumbnail.setVisibility(View.GONE);
-        } else{
-            //load image
-        }
+        holder.bindNews(currentArticle);
     }
 
     @Override

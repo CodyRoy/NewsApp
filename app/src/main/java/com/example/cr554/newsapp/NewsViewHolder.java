@@ -3,10 +3,11 @@ package com.example.cr554.newsapp;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.NetworkImageView;
 
+import com.example.cr554.newsapp.Volley.VolleySingleton;
 
 /**
  * Created by cr554 on 2/17/2017.
@@ -15,7 +16,7 @@ import android.widget.TextView;
 public class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public TextView headline;
     public TextView section;
-    public ImageView thumbnail;
+    public NetworkImageView thumbnail;
     private Context context;
 
     //constructor
@@ -23,9 +24,16 @@ public class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         super(itemView);
         headline = (TextView) itemView.findViewById(R.id.newsHeadline);
         section = (TextView) itemView.findViewById(R.id.newsSection);
-        thumbnail = (ImageView) itemView.findViewById(R.id.newsImg);
+        thumbnail = (NetworkImageView) itemView.findViewById(R.id.newsImg);
+
         itemView.setOnClickListener(this);
         this.context = ctx;
+    }
+
+    public void bindNews(NewsArticle news){
+        headline.setText(news.getHeadline());
+        section.setText(news.getSectionName());
+        thumbnail.setImageUrl(news.getThumbnail(),VolleySingleton.getInstance(context).getImageLoader());
     }
 
     public void onClick(View view){
