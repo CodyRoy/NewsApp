@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">NewsApp</string>
     <string name="noNews">No News Was Found</string>
-    <string name="baseuri">https://content.guardianapis.com/</string>
+    <string name="baseuri">http://content.guardianapis.com/search</string>
 </resources>

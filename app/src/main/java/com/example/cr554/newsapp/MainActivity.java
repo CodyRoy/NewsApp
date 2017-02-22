@@ -16,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.cr554.newsapp.Util.APIKey;
 import com.example.cr554.newsapp.Volley.VolleySingleton;
 import com.example.cr554.newsapp.adapter.NewsAdapter;
 
@@ -47,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchNews(){
-        String url = "http://content.guardianapis.com/search?show-fields=thumbnail&q=sports&api-key=e6678f97-7cd9-4156-88f7-f5f508c29ed3";
+        String url = getNewsUrl("sports");
+        //String url = "http://content.guardianapis.com/search?show-fields=thumbnail&q=sports&api-key=e6678f97-7cd9-4156-88f7-f5f508c29ed3";
         JsonObjectRequest moreNews = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
@@ -93,12 +95,12 @@ public class MainActivity extends AppCompatActivity {
         newsList.getAdapter().notifyDataSetChanged();
     }
 
-    private String getNewsUrl(){
+    private String getNewsUrl(String topic){
         String baseUri = getString(R.string.baseuri);
         Uri u = Uri.parse(baseUri).buildUpon()
-                .appendQueryParameter("api_key","e6678f97-7cd9-4156-88f7-f5f508c29ed3")
-                .appendQueryParameter("format", "json")
-                .appendQueryParameter("nojsoncallack","1")
+                .appendQueryParameter("show-fields","thumbnail")
+                .appendQueryParameter("q",topic)
+                .appendQueryParameter("api-key", APIKey.FLICKER_API_KEY)
                 .build();
         return u.toString();
     }
