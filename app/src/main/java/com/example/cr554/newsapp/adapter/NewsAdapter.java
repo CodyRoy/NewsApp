@@ -12,8 +12,8 @@ import com.example.cr554.newsapp.R;
 import java.util.List;
 
 /**
- *
- * Created by cr554 on 2/17/2017.
+ * * Created by cr554 on 2/17/2017.
+ * Custom adapter for a Recylcer View
  */
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder>{

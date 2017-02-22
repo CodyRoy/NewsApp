@@ -11,6 +11,8 @@ import com.android.volley.toolbox.Volley;
 
 /**
  * Created by cr554 on 2/20/2017.
+ * due to how often the app needs to use network requests, a volley singleton was implemented so that
+ * it was active throughout the application
  */
 
 public class VolleySingleton {
@@ -18,6 +20,7 @@ public class VolleySingleton {
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
     private static Context mCtx;
+
 
     private VolleySingleton (Context context){
         mCtx=context;
@@ -45,7 +48,7 @@ public class VolleySingleton {
         return mInstance;
     }
 
-    public RequestQueue getRequestQueue(){
+    private RequestQueue getRequestQueue(){
         if(mRequestQueue==null){
             mRequestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
         }

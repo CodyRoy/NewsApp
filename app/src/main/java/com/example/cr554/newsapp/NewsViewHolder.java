@@ -13,15 +13,17 @@ import com.example.cr554.newsapp.Volley.VolleySingleton;
 
 /**
  * Created by cr554 on 2/17/2017.
+ * This class is designed to hold the news views. It's constructor assigns it views, which it then
+ * populates via the bindNews(NewsArticle news) func. The onClick(View view) func lets the user
+ * view the full article thats being displayed
  */
 
 public class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public TextView headline;
-    public TextView section;
-    public NetworkImageView thumbnail;
+    private TextView headline;
+    private TextView section;
+    private NetworkImageView thumbnail;
     private Context context;
 
-    //constructor
     public NewsViewHolder(View itemView, Context ctx){
         super(itemView);
         headline = (TextView) itemView.findViewById(R.id.newsHeadline);

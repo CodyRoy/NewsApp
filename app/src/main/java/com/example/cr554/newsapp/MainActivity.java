@@ -31,6 +31,7 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
+    //declare classwide vars
     RecyclerView newsList;
     TextView emptyView;
     public static List<NewsArticle> newsArticles = new ArrayList<>();
@@ -40,22 +41,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        //find the views we'll be editing
         newsList =(RecyclerView)findViewById(R.id.newsList);
         emptyView = (TextView)findViewById(R.id.noNewsToShow);
 
+        //call fetchnews() to fetch news
         fetchNews();
     }
 
     private void fetchNews(){
+        //get the Json Request URL
         String url = getNewsUrl("sports");
-        //String url = "http://content.guardianapis.com/search?show-fields=thumbnail&q=sports&api-key=e6678f97-7cd9-4156-88f7-f5f508c29ed3";
+
+        //** begin Json Request **//
         JsonObjectRequest moreNews = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
-                //grab the array of json results and iterate through ti to create news article classes, we can then add these to the adapter.???
                 JSONArray results;
                 try{
                     results = response.getJSONObject("response").getJSONArray("results");
@@ -81,27 +84,22 @@ public class MainActivity extends AppCompatActivity {
                 //do things with error response
             }
         });
+        //** end JSON Request **//
+
+        //pass the JSON request to our volley singleton
         VolleySingleton.getInstance(this).addToRequestQueue(moreNews);
     }
 
-    private void redrawRecycler(){
-        if(newsArticles.isEmpty()){
-            newsList.setVisibility(View.GONE);
-            emptyView.setVisibility(View.VISIBLE);
-        }else{
-            newsList.setVisibility(View.VISIBLE);
-            emptyView.setVisibility(View.GONE);
-        }
-        newsList.getAdapter().notifyDataSetChanged();
-    }
 
     private String getNewsUrl(String topic){
         String baseUri = getString(R.string.baseuri);
         Uri u = Uri.parse(baseUri).buildUpon()
-                .appendQueryParameter("show-fields","thumbnail")
-                .appendQueryParameter("q",topic)
-                .appendQueryParameter("api-key", APIKey.FLICKER_API_KEY)
+                .appendQueryParameter("show-fields","thumbnail") //makes the json return a thumbnail
+                .appendQueryParameter("q",topic) // our actual search topic
+                .appendQueryParameter("api-key", APIKey.FLICKER_API_KEY) //the api key
                 .build();
+
+        //u should equal:  http://content.guardianapis.com/search?show-fields=thumbnail&q=sports&api_key=e6678f97-7cd9-4156-88f7-f5f508c29ed3
         return u.toString();
     }
 }
