@@ -2,6 +2,7 @@ package com.example.cr554.newsapp.Util;
 
 /**
  * Created by cr554 on 2/22/2017.
+ * holds my APIKey if i get more important constants will probably change class to Constants and have it hold all of them
  */
 
 public class APIKey {

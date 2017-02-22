@@ -2,6 +2,7 @@ package com.example.cr554.newsapp;
 
 /**
  * Created by cr554 on 2/20/2017.
+ * The NewsArticle class sets and gets all relevant information regaurding the specific news article
  */
 
 public class NewsArticle {
@@ -10,26 +11,26 @@ public class NewsArticle {
     private String mThumbnail;
     private String mUrl;
 
-    public NewsArticle(String vHeadline, String vSectionName, String vThumbnail, String vUrl) {
-        this.mHeadline = vHeadline;
-        this.mSectionName = vSectionName;
-        this.mThumbnail = vThumbnail;
-        this.mUrl = vUrl;
+    NewsArticle(String vHeadline, String vSectionName, String vThumbnail, String vUrl) {
+        mHeadline = vHeadline;
+        mSectionName = vSectionName;
+        mThumbnail = vThumbnail;
+        mUrl = vUrl;
     }
 
-    public String getHeadline() {
+    String getHeadline() {
         return mHeadline;
     }
 
-    public String getSectionName() {
+    String getSectionName() {
         return mSectionName;
     }
 
-    public String getThumbnail() {
+    String getThumbnail() {
         return mThumbnail;
     }
 
-    public String getUrl() {
+    String getUrl() {
         return mUrl;
     }
 
