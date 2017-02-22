@@ -32,7 +32,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     RecyclerView newsList;
     TextView emptyView;
-    List<NewsArticle> newsArticles = new ArrayList<>();
+    public static List<NewsArticle> newsArticles = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
