@@ -1,6 +1,8 @@
 package com.example.cr554.newsapp;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -37,6 +39,8 @@ public class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     }
 
     public void onClick(View view){
-        //opens a webview of the article
+        NewsArticle newsArticle = MainActivity.newsArticles.get(getAdapterPosition());
+        Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse(newsArticle.getUrl()));
+        context.startActivity(browserIntent);
     }
 }
